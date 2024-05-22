@@ -9,15 +9,15 @@
   <body>
     <h1>Server-Side Calculator</h1>
 
-    <form data-testid="calculator">
-      <input data-testid="numOne" placeholder="First Number" type="number" class="numOne">
-      <button>+</button>
-      <button>-</button>
-      <button>*</button>
-      <button>/</button>
-      <input data-testid="numTwo" placeholder="Second Number" type="number" class="numTwo">
+    <form data-testid="calculator" id="calculatorForm">
+      <input data-testid="numOne" placeholder="First Number" type="number" class="numOne" required>
+      <button class="operator" value="+">+</button>
+      <button class="operator" value="-">-</button>
+      <button class="operator" value="*">*</button>
+      <button class="operator" value="/">/</button>
+      <input data-testid="numTwo" placeholder="Second Number" type="number" class="numTwo" required>
       <button type="submit">=</button>
-      <button>C</button>
+      <button class="clearButton">C</button>
     </form>
 
     <section data-testid="recentResult">
