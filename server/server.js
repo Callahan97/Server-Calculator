@@ -15,6 +15,7 @@ let calculations = []
 // GET /calculations
 app.get('/calculations', (req, res) =>{
   res.send(calculations);
+
 });
 
 // POST /calculations
@@ -42,7 +43,7 @@ app.post('/calculations', (req, res) =>{
     return;
   }
  
-  const newCalculation = {numOne, numTwo, operator, result};
+  const newCalculation = {numOne: numOne, numTwo: numTwo, operator: operator, answer: result};
   calculations.push(newCalculation);
   
   res.status(201).send(calculations);
