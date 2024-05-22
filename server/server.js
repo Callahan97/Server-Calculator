@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-let PORT = process.env.PORT || 5000;
+let PORT = process.env.PORT || 5001;
 
 app.use(express.json());
 app.use(express.static('server/public'));
@@ -13,9 +13,40 @@ let calculations = []
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
+app.get('/calculations', (req, res) =>{
+  res.send(calculations);
+});
 
 // POST /calculations
+app.post('/calculations', (req, res) =>{
+  console.log('post request to calculations');
 
+  const {numOne, numTwo, operator} = req.body
+  let result;
+  
+  switch(operator) {
+    case '+':
+      result = numOne + numTwo;
+    break;
+    case '-':
+      result = numOne - numTwo;
+    break;
+    case '/':
+      result = numOne / numTwo;
+    break;
+    case '*':
+      result = numOne * numTwo;
+    break;
+    default:
+      res.status(400).send('Invalid Operator');
+    return;
+  }
+ 
+  const newCalculation = {numOne, numTwo, operator, result};
+  calculations.push(newCalculation);
+  
+  res.status(201).send(calculations);
+});
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
