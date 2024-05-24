@@ -45,7 +45,7 @@ app.post('/calculations', (req, res) =>{
  
   const newCalculation = {numOne: numOne, numTwo: numTwo, operator: operator, answer: result};
   calculations.push(newCalculation);
-  
+
   res.status(201).send(calculations);
 });
 
