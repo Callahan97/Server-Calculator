@@ -9,8 +9,19 @@ const clearButton = document.getElementById('clearButton');
     const handleOperatorClick = (button) => {
         selectedOperator = button.value;
 
-        console.log(selectedOperator)
-        operatorButtons.forEach(btn => btn.classList.remove('selected'));
-        button.classList.add('selected');
-};
+    console.log(selectedOperator)
+    operatorButtons.forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+    };
+    operatorButtons.forEach(button => {
+    button.addEventListener('click', () => handleOperatorClick(button));
+    });
+    const clearForm = () => {
+    document.getElementById('numOne').value = '';
+    document.getElementById('numTwo').value = '';
+    selectedOperator = null;
+    operatorButtons.forEach(btn => btn.classList.remove('selected'));
+    };
+    // Add event listener to the clear button
+    clearButton.addEventListener('click', clearForm);
 })
