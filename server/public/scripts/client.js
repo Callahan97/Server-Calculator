@@ -13,7 +13,7 @@ const clearButton = document.getElementById('clearButton');
     operatorButtons.forEach(btn => btn.classList.remove('selected'));
     button.classList.add('selected');
     };
-    
+
     operatorButtons.forEach(button => {
     button.addEventListener('click', () => handleOperatorClick(button));
     });
@@ -39,4 +39,27 @@ const clearButton = document.getElementById('clearButton');
         alert('Please select an operator');
         return;
         }
-})
+
+        const data = {
+            numOne: parseFloat(number1),
+            numTwo: parseFloat(number2),
+            operator: selectedOperator
+            };
+           
+            console.log(data);
+           
+            // Post the data to the calculations endpoint using Axios
+            axios.post('/calculations', data)
+            .then(response => {
+            console.log(response.data);
+        
+            clearForm(); // Clear the form on successful POST
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            });
+            };
+           
+            // Add event listener to the form's submit event
+            form.addEventListener('submit', handleSubmit);
+});
